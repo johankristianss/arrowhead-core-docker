@@ -1,0 +1,52 @@
+version: "0.1"
+
+services:
+  arrowhead-database:
+    container_name: arrowhead-database
+    image: aitiaiiot/arrowhead-database:4.6.1
+    volumes:
+      - arrowhead-database:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  arrowhead-serviceregistry:
+    container_name: arrowhead-serviceregistry
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: serviceregistry
+    depends_on:
+      - arrowhead-database
+    volumes:
+      - ./serviceregistry/application.properties:/opt/arrowhead/application.properties
+      - ./serviceregistry/certificates:/opt/arrowhead/certificates
+    ports:
+      - 8443:8443
+  
+  arrowhead-authorization:
+    container_name: arrowhead-authorization
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: authorization
+    depends_on:
+      - arrowhead-database
+    volumes:
+      - ./authorization/application.properties:/opt/arrowhead/application.properties
+      - ./authorization/certificates:/opt/arrowhead/certificates
+    ports:
+      - 8445:8445
+      
+  arrowhead-orchestrator:
+    container_name: arrowhead-orchestrator
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: orchestrator
+    depends_on:
+      - arrowhead-database
+    volumes:
+      - ./orchestrator/application.properties:/opt/arrowhead/application.properties
+      - ./orchestrator/certificates:/opt/arrowhead/certificates
+    ports:
+      - 8441:8441
+
+volumes:
+  arrowhead-database:
