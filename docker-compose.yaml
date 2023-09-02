@@ -14,6 +14,8 @@ services:
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: serviceregistry
+    env_file:
+      - .env
     depends_on:
       - arrowhead-database
     volumes:
@@ -27,6 +29,8 @@ services:
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: authorization
+    env_file:
+      - .env
     depends_on:
       - arrowhead-database
     volumes:
@@ -40,6 +44,8 @@ services:
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: orchestrator
+    env_file:
+      - .env
     depends_on:
       - arrowhead-database
     volumes:
