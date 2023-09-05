@@ -17,12 +17,12 @@ Other versions should also work.
 
 ## Setup 
 
-Clone the repository and create a `.env` file, by creating it manually or running,
+Clone the repository and create a `.env` file, by creating it manually or running the following command in the root location of the repository,
 
 ```
 touch .env
 ```
-in the root location of the repository. In the `.env` file the following arguments can or must be added.
+In the `.env` file the following arguments can or must be added.
 
 * `PASSWORD`, this is **REQUIRED** and will set the password for all certificates generated.
 * `ROOT_NAME`, this is **OPTIONAL** and will set the name of the root certificate.
