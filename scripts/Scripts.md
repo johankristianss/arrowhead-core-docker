@@ -24,7 +24,7 @@ bash stop.sh
 
 ## build.sh
 
-Builds all cretificates defined in the certificate generation scripts. If not custom certificates are added, then only the *master*, *cloud*, *sysop*, *truststore* certificates and the core arrowhead certificates for *serviceregistry*, *authorization* and *orchestrator* will be generated. 
+Builds all cretificates defined in the certificate generation scripts. If no custom certificates are added, then only the *master*, *cloud*, *sysop*, *truststore* certificates and the core arrowhead certificates for *serviceregistry*, *authorization* and *orchestrator* will be generated. 
 
 ### Prerequisites
 
@@ -49,7 +49,7 @@ To add a custom certificate in the `build_custom_systems.sh` script enter this l
 ```
 bash generate_system_certificate.sh -n <SYSTEM_NAME> -d <SYSTEM_CERT_DIR>
 ```
-Replace `<SYSTEM_NAME>` with the name of your custom system, this field is **required**. Replace `<SYSTEM_CERT_DIR>` with the location for where you want your certificate to be generated to, relative to the root folder, this field is **optinal**, if this field is left out the certificate is saved in `<SYSTEM_NAME>/certificates`
+Replace `<SYSTEM_NAME>` with the name of your custom system, this field is **required**. Replace `<SYSTEM_CERT_DIR>` with the location for where you want your certificate to be generated to, relative to the root folder. This field is **optinal**, if this field is left out the certificate is saved in `<SYSTEM_NAME>/certificates`
 You can also add a parameter for *subject alternative name* parameters `-s <SUBJECT_ALTERNATIVE_NAME>`, this can be used to add valid ip address or dns's to the certificate.
 
 ### Manual use
@@ -69,4 +69,4 @@ bash build_custom_systems.sh
 
 ## certificate_generation_scripts
 
-The scripts in `certificate-generation-scripts` are mostly used behind the scenes. But a usefule script is the `generate_system_certificate.sh` script. You can use this script to manually generate a certificate for a custom service.
+The scripts in `certificate-generation-scripts` are mostly used behind the scenes. But a useful script is the `generate_system_certificate.sh` script. You can use this script to manually generate a certificate for a custom service.
