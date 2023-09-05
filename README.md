@@ -40,22 +40,20 @@ or `cd` into the `scripts` directory and run,
 bash start.sh
 ```
 
-Note that certificates will be generated at startup and can only be regenerated if the `certificates` directory is removed or the tag `-r` is used when running the script method. More info about scripts can be found at [scripts](/scripts/Scripts.md)
+> Note: that certificates will be generated at startup and can only be regenerated if the `certificates` directory is removed or the tag `-r` is used when running the script method. More info about scripts can be found at [scripts](/scripts/Scripts.md)
 
 ## Generate certificates for custom systems
-To generate certificates for your custom systems. Add this line of code to `scripts\build_custom_systems.sh`
+To generate certificates for your custom systems. Add this line of code to `scripts/build_custom_systems.sh`
 
 ```
 bash generate_system_certificate.sh -n <SYSTEM_NAME> -d <SYSTEM_CERT_DIR>
 ```
 
-You can also run this code manually if you `cd` into `scripts` and run the same command.
+You can also run this code manually if you `cd` into `scripts/certificate-generation-scripts` and run the same command.
 > Note: this option requires that the other certificates are generated and java `JRE/JDK 11`.
 
 ## Use Arrowhead
-When the system is started and running, you will find the serviceregistry at [localhost:8443](https://localhost:8443)
-When the system is started and running, you will find the authorization at [localhost:8445](https://localhost:8445)
-When the system is started and running, you will find the orchestrator at [localhost:8441](https://localhost:8441). You can also se the systems on your local ipv4 address. To access the arrowhead core system via a browser, you must add a certificate to the browser. In firefox you can follow these steps,
+When the system is started and running, you will find the serviceregistry at [localhost:8443](https://localhost:8443), the authorization at [localhost:8445](https://localhost:8445) and the orchestrator at [localhost:8441](https://localhost:8441). You can also se the systems on your local ipv4 address. To access the arrowhead core system via a browser, you must add a certificate to the browser. In firefox you can follow these steps,
 1. settings
 2. Privacy & Security
 3. scroll to Security
