@@ -2,6 +2,10 @@
 
 # Created by Jesper Frisk (https://github.com/MrDweller)
 
+source "./load_input.sh"
+source "./lib_certs.sh"
+cd '../../' # Go to repository root level
+
 # Generates all necessary certificates for the core arrowhead systems
 
 # The environment variable PASSWORD is used to set the password of all created key stores, this variable must be set.
@@ -10,10 +14,6 @@
 # The environment variable COMPANY_NAME is the name of the company/organization. Defualts to "ltu".
 
 # @param -s Subject alternative name parameters. Sets extra ips or dns, example: "ip:192.168.1.1". Defualts to empty string.
-
-cd ../
-source "./certificate-generation-scripts/load_input.sh"
-source "./certificate-generation-scripts/lib_certs.sh"
 
 rm -r certificates
 
@@ -51,3 +51,9 @@ create_core_system_keystore() {
 create_core_system_keystore "authorization"
 create_core_system_keystore "orchestrator"
 create_core_system_keystore "serviceregistry"
+
+###############################################################################################
+### Add other core arrowhead systems here, in order to atuo generate certificates for them. ###
+###############################################################################################
+
+

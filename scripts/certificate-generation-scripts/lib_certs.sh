@@ -1,13 +1,13 @@
 #!/bin/sh
 
+source "../../.env"
+
 # Created by Emanuel Palm (https://github.com/emanuelpalm)
 # Modified by Jesper Frisk (https://github.com/MrDweller)
 
 # Uses `keytool`, typically bundled with Java installations, to generate and
 # sign keystores, certificates and truststores for Arrowhead roots, clouds,
 # systems and system operators.
-
-source ".env"
 
 # The environment variable PASSWORD is used to set the password of all
 # created key stores. If it is not set, "123456" is used by default. The
@@ -17,7 +17,8 @@ if [[ -z "${PASSWORD}" ]]; then
   echo "You must create a '.env' file with the variable 'PASSWORD'"
   exit 1
 fi
-export PASSWORD=$PASSWORD
+export PASSWORD=$(echo $PASSWORD | tr -d '\r') # removes '\r' if the .env file was created in windows.
+
 # Creates a root certificate keystore and a corresponding PEM certificate.
 #
 # If the keystore already exists, the operation does nothing. If the PEM

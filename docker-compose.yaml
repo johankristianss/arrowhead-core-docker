@@ -9,6 +9,18 @@ services:
     ports:
       - 3306:3306
 
+  arrowhead-setup:
+    container_name: arrowhead-setup
+    build: 
+      context: .
+      dockerfile: ./setup/Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - arrowhead-database
+    volumes:
+      - ./:/setup
+
   arrowhead-serviceregistry:
     container_name: arrowhead-serviceregistry
     image: aitiaiiot/arrowhead-system:4.6.1
@@ -17,7 +29,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - arrowhead-database
+      arrowhead-setup:
+        condition: service_completed_successfully
     volumes:
       - ./serviceregistry/application.properties:/opt/arrowhead/application.properties
       - ./serviceregistry/certificates:/opt/arrowhead/certificates
@@ -32,7 +45,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - arrowhead-database
+      arrowhead-setup:
+        condition: service_completed_successfully
     volumes:
       - ./authorization/application.properties:/opt/arrowhead/application.properties
       - ./authorization/certificates:/opt/arrowhead/certificates
@@ -47,7 +61,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - arrowhead-database
+      arrowhead-setup:
+        condition: service_completed_successfully
     volumes:
       - ./orchestrator/application.properties:/opt/arrowhead/application.properties
       - ./orchestrator/certificates:/opt/arrowhead/certificates

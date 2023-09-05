@@ -32,10 +32,9 @@ fi
 echo "Using system name: $SYSTEM_NAME"
 echo "Using system certificate directory: $SYSTEM_CERT_DIR"
 
-cd ../
-source "./certificate-generation-scripts/load_input.sh"
-source "./certificate-generation-scripts/lib_certs.sh"
-
+source "./load_input.sh"
+source "./lib_certs.sh"
+cd '../../' # Go to repository root level
 
 rm -r ${SYSTEM_NAME}/certificates
 

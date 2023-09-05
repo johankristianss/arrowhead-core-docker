@@ -1,12 +1,12 @@
 #!/bin/sh
 
+source "../../.env"
+
 # The environment variable ROOT_NAME is the name of the root/master certificate. Defualts to "master".
 # The environment variable CLOUD_NAME is the name of the cloud certificate. Defualts to "cloud".
 # The environment variable COMPANY_NAME is the name of the company/organization. Defualts to "ltu".
 
 # @param -s Subject alternative name parameters. Sets extra ips or dns, example: "ip:192.168.1.1". Defualts to empty string.
-
-source ".env"
 
 while getopts s: flag
 do
