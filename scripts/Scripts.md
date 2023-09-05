@@ -49,12 +49,12 @@ To add a custom certificate in the `build_custom_systems.sh` script enter this l
 ```
 bash generate_system_certificate.sh -n <SYSTEM_NAME> -d <SYSTEM_CERT_DIR>
 ```
-Replace `<SYSTEM_NAME>` with the name of your custom system, this field is **required**. Replace `<SYSTEM_CERT_DIR>` with the location for where you want your certificate to be generated to, relative to the root folder. This field is **optinal**, if this field is left out the certificate is saved in `<SYSTEM_NAME>/certificates`
+Replace `<SYSTEM_NAME>` with the name of your custom system, this field is **required**. Replace `<SYSTEM_CERT_DIR>` with the location for where you want your certificate to be generated to, relative to the root folder. This field is **optinal**, if this field is left out the certificate is saved in `<SYSTEM_NAME>/certificates`.
 You can also add a parameter for *subject alternative name* parameters `-s <SUBJECT_ALTERNATIVE_NAME>`, this can be used to add valid ip address or dns's to the certificate.
 
 ### Manual use
 
-The script runs automaticaly when the system start, but you can also run the script manually
+The script runs automaticaly when the system starts, but you can also run the script manually
 
 #### Prerequisites
 
