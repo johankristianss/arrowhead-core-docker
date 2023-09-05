@@ -59,5 +59,5 @@ When the system is started and running, you will find the serviceregistry at [ht
 3. scroll to Security
 4. View Certificates...
 5. Import...
-6. Add the `sysop.p12` certificate, this is must be generated and is then located in the `certificates` directory
+6. Add the `sysop.p12` certificate, this must have been generated and will be located in the `certificates` directory
 7. Enter the certificate password
