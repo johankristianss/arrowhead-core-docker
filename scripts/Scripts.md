@@ -10,7 +10,7 @@ or
 ```
 bash start.sh -r 
 ```
-if you want to rebuild certificates.
+if you want to rebuild the certificates.
 
 ## stop.sh
 
