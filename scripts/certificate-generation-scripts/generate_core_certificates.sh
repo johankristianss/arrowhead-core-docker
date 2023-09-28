@@ -36,6 +36,7 @@ create_system_keystore \
 
 create_core_system_keystore() {
     SYSTEM_NAME=$1
+    SYSTEM_IP=$2
 
     rm -r ${SYSTEM_NAME}/certificates
 
@@ -43,14 +44,14 @@ create_core_system_keystore() {
         "certificates/${ROOT_NAME}.p12" "arrowhead.eu" \
         "certificates/${CLOUD_NAME}.p12" "${CLOUD_NAME}.${COMPANY_NAME}.arrowhead.eu" \
         "${SYSTEM_NAME}/certificates/${SYSTEM_NAME}.p12" "${SYSTEM_NAME}.${CLOUD_NAME}.${COMPANY_NAME}.arrowhead.eu" "${SYSTEM_NAME}" \
-        "dns:${SYSTEM_NAME},dns:host.docker.internal,dns:localhost,ip:127.0.0.1,${SUBJECT_ALTERNATIVE_NAME}"
+        "dns:${SYSTEM_NAME},dns:${SYSTEM_IP},dns:localhost,ip:127.0.0.1,${SUBJECT_ALTERNATIVE_NAME}"
 
     cp certificates/truststore.p12 ${SYSTEM_NAME}/certificates/truststore.p12 
 }
 
-create_core_system_keystore "authorization"
-create_core_system_keystore "orchestrator"
-create_core_system_keystore "serviceregistry"
+create_core_system_keystore "authorization" "arrowhead-authorization"
+create_core_system_keystore "orchestrator" "arrowhead-orchestrator"
+create_core_system_keystore "serviceregistry" "arrowhead-serviceregistry"
 
 ###############################################################################################
 ### Add other core arrowhead systems here, in order to atuo generate certificates for them. ###

@@ -11,6 +11,7 @@ or
 bash start.sh -r 
 ```
 if you want to rebuild the certificates.
+You can also add the tag `-d` if you want to run the system detached.
 
 ## stop.sh
 
