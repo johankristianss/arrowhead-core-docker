@@ -42,6 +42,6 @@ create_system_keystore \
     "certificates/${ROOT_NAME}.p12" "arrowhead.eu" \
     "certificates/${CLOUD_NAME}.p12" "${CLOUD_NAME}.${COMPANY_NAME}.arrowhead.eu" \
     "./$SYSTEM_CERT_DIR/${SYSTEM_NAME}.p12" "${SYSTEM_NAME}.${CLOUD_NAME}.${COMPANY_NAME}.arrowhead.eu" "${SYSTEM_NAME}" \
-    "dns:${SYSTEM_NAME},dns:host.docker.internal,dns:localhost,ip:127.0.0.1,${SUBJECT_ALTERNATIVE_NAME}"
+    "dns:${SYSTEM_NAME},dns:localhost,ip:127.0.0.1,${SUBJECT_ALTERNATIVE_NAME}"
 
 cp certificates/truststore.p12 ./$SYSTEM_CERT_DIR/truststore.p12 
