@@ -52,6 +52,9 @@ create_core_system_keystore() {
 create_core_system_keystore "authorization" "arrowhead-authorization"
 create_core_system_keystore "orchestrator" "arrowhead-orchestrator"
 create_core_system_keystore "serviceregistry" "arrowhead-serviceregistry"
+create_core_system_keystore "eventhandler" "arrowhead-eventhandler"
+create_core_system_keystore "gateway" "arrowhead-gateway"
+create_core_system_keystore "gatekeeper" "arrowhead-gatekeeper"
 
 ###############################################################################################
 ### Add other core arrowhead systems here, in order to atuo generate certificates for them. ###

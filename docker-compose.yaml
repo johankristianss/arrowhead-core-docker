@@ -69,5 +69,53 @@ services:
     ports:
       - 8441:8441
 
+  arrowhead-eventhandler:
+    container_name: arrowhead-eventhandler
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: eventhandler
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./eventhandler/application.properties:/opt/arrowhead/application.properties
+      - ./eventhandler/certificates:/opt/arrowhead/certificates
+    ports:
+      - 8455:8455
+
+  arrowhead-gatekeeper:
+    container_name: arrowhead-gatekeeper
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: gatekeeper
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./gatekeeper/application.properties:/opt/arrowhead/application.properties
+      - ./gatekeeper/certificates:/opt/arrowhead/certificates
+    ports:
+      - 8449:8449
+
+  arrowhead-gateway:
+    container_name: arrowhead-gateway
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: gateway
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./gateway/application.properties:/opt/arrowhead/application.properties
+      - ./gateway/certificates:/opt/arrowhead/certificates
+    ports:
+      - 8453:8453
+
 volumes:
   arrowhead-database:
