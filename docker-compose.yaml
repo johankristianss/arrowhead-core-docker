@@ -1,13 +1,21 @@
 version: "0.1"
 
 services:
-  arrowhead-database:
-    container_name: arrowhead-database
+  c1-database:
+    container_name: c1-database
     image: aitiaiiot/arrowhead-database:4.6.1
     volumes:
-      - arrowhead-database:/var/lib/mysql
+      - c1-database:/var/lib/mysql
     ports:
       - 3306:3306
+
+  c2-database:
+    container_name: c2-database
+    image: aitiaiiot/arrowhead-database:4.6.1
+    volumes:
+      - c2-database:/var/lib/mysql
+    ports:
+      - 4306:3306
 
   arrowhead-setup:
     container_name: arrowhead-setup
@@ -17,12 +25,16 @@ services:
     env_file:
       - .env
     depends_on:
-      - arrowhead-database
+      - c1-database
+      - c2-database
     volumes:
       - ./:/setup
 
-  arrowhead-serviceregistry:
-    container_name: arrowhead-serviceregistry
+  #
+  # CLOUD 1
+  #
+  c1-serviceregistry:
+    container_name: c1-serviceregistry
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: serviceregistry
@@ -32,13 +44,13 @@ services:
       arrowhead-setup:
         condition: service_completed_successfully
     volumes:
-      - ./serviceregistry/application.properties:/opt/arrowhead/application.properties
-      - ./serviceregistry/certificates:/opt/arrowhead/certificates
+      - ./c1/serviceregistry/application.properties:/opt/arrowhead/application.properties
+      - ./c1/serviceregistry/certificates:/opt/arrowhead/certificates
     ports:
       - 8443:8443
   
-  arrowhead-authorization:
-    container_name: arrowhead-authorization
+  c1-authorization:
+    container_name: c1-authorization
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: authorization
@@ -48,13 +60,13 @@ services:
       arrowhead-setup:
         condition: service_completed_successfully
     volumes:
-      - ./authorization/application.properties:/opt/arrowhead/application.properties
-      - ./authorization/certificates:/opt/arrowhead/certificates
+      - ./c1/authorization/application.properties:/opt/arrowhead/application.properties
+      - ./c1/authorization/certificates:/opt/arrowhead/certificates
     ports:
       - 8445:8445
       
-  arrowhead-orchestrator:
-    container_name: arrowhead-orchestrator
+  c1-orchestrator:
+    container_name: c1-orchestrator
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: orchestrator
@@ -64,13 +76,13 @@ services:
       arrowhead-setup:
         condition: service_completed_successfully
     volumes:
-      - ./orchestrator/application.properties:/opt/arrowhead/application.properties
-      - ./orchestrator/certificates:/opt/arrowhead/certificates
+      - ./c1/orchestrator/application.properties:/opt/arrowhead/application.properties
+      - ./c1/orchestrator/certificates:/opt/arrowhead/certificates
     ports:
       - 8441:8441
 
-  arrowhead-eventhandler:
-    container_name: arrowhead-eventhandler
+  c1-eventhandler:
+    container_name: c1-eventhandler
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: eventhandler
@@ -80,13 +92,13 @@ services:
       arrowhead-setup:
         condition: service_completed_successfully
     volumes:
-      - ./eventhandler/application.properties:/opt/arrowhead/application.properties
-      - ./eventhandler/certificates:/opt/arrowhead/certificates
+      - ./c1/eventhandler/application.properties:/opt/arrowhead/application.properties
+      - ./c1/eventhandler/certificates:/opt/arrowhead/certificates
     ports:
       - 8455:8455
 
-  arrowhead-gatekeeper:
-    container_name: arrowhead-gatekeeper
+  c1-gatekeeper:
+    container_name: c1-gatekeeper
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: gatekeeper
@@ -96,13 +108,13 @@ services:
       arrowhead-setup:
         condition: service_completed_successfully
     volumes:
-      - ./gatekeeper/application.properties:/opt/arrowhead/application.properties
-      - ./gatekeeper/certificates:/opt/arrowhead/certificates
+      - ./c1/gatekeeper/application.properties:/opt/arrowhead/application.properties
+      - ./c1/gatekeeper/certificates:/opt/arrowhead/certificates
     ports:
       - 8449:8449
 
-  arrowhead-gateway:
-    container_name: arrowhead-gateway
+  c1-gateway:
+    container_name: c1-gateway
     image: aitiaiiot/arrowhead-system:4.6.1
     environment:
       SYSTEM_NAME: gateway
@@ -112,10 +124,126 @@ services:
       arrowhead-setup:
         condition: service_completed_successfully
     volumes:
-      - ./gateway/application.properties:/opt/arrowhead/application.properties
-      - ./gateway/certificates:/opt/arrowhead/certificates
+      - ./c1/gateway/application.properties:/opt/arrowhead/application.properties
+      - ./c1/gateway/certificates:/opt/arrowhead/certificates
     ports:
       - 8453:8453
 
+  # 
+  # CLOUD 2
+  # 
+  c2-serviceregistry:
+    container_name: c2-serviceregistry
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: serviceregistry
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./c2/serviceregistry/application.properties:/opt/arrowhead/application.properties
+      - ./c2/serviceregistry/certificates:/opt/arrowhead/certificates
+    ports:
+      - 9443:8443
+
+  c2-authorization:
+    container_name: c2-authorization
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: authorization
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./c2/authorization/application.properties:/opt/arrowhead/application.properties
+      - ./c2/authorization/certificates:/opt/arrowhead/certificates
+    ports:
+      - 9445:8445
+      
+  c2-orchestrator:
+    container_name: c2-orchestrator
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: orchestrator
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./c2/orchestrator/application.properties:/opt/arrowhead/application.properties
+      - ./c2/orchestrator/certificates:/opt/arrowhead/certificates
+    ports:
+      - 9441:8441
+
+  c2-eventhandler:
+    container_name: c2-eventhandler
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: eventhandler
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./c2/eventhandler/application.properties:/opt/arrowhead/application.properties
+      - ./c2/eventhandler/certificates:/opt/arrowhead/certificates
+    ports:
+      - 9455:8455
+
+  c2-gatekeeper:
+    container_name: c2-gatekeeper
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: gatekeeper
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./c2/gatekeeper/application.properties:/opt/arrowhead/application.properties
+      - ./c2/gatekeeper/certificates:/opt/arrowhead/certificates
+    ports:
+      - 9449:8449
+
+  c2-gateway:
+    container_name: c2-gateway
+    image: aitiaiiot/arrowhead-system:4.6.1
+    environment:
+      SYSTEM_NAME: gateway
+    env_file:
+      - .env
+    depends_on:
+      arrowhead-setup:
+        condition: service_completed_successfully
+    volumes:
+      - ./c2/gateway/application.properties:/opt/arrowhead/application.properties
+      - ./c2/gateway/certificates:/opt/arrowhead/certificates
+    ports:
+      - 9453:8453
+
+  # 
+  # BROKER SERVER
+  #
+  broker-activemq:
+    image: apache/activemq-classic:5.18.6
+    container_name: broker-activemq
+    environment:
+      - "TZ=Europe/Amsterdam"
+    volumes:
+      - ./activemq/activemq.xml:/conf/activemq.xml
+      - ./activemq/relay.p12:/conf/relay.p12
+      - ./activemq/truststore.p12:/conf/truststore.p12
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+
 volumes:
-  arrowhead-database:
+  c1-database:
+  c2-database:

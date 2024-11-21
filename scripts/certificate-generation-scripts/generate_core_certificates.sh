@@ -2,9 +2,11 @@
 
 # Created by Jesper Frisk (https://github.com/MrDweller)
 
+c="c2"
+
 source "./load_input.sh"
 source "./lib_certs.sh"
-cd '../../' # Go to repository root level
+cd "../../${c}/" # Go to repository root level
 
 # Generates all necessary certificates for the core arrowhead systems
 
@@ -49,12 +51,12 @@ create_core_system_keystore() {
     cp certificates/truststore.p12 ${SYSTEM_NAME}/certificates/truststore.p12 
 }
 
-create_core_system_keystore "authorization" "arrowhead-authorization"
-create_core_system_keystore "orchestrator" "arrowhead-orchestrator"
-create_core_system_keystore "serviceregistry" "arrowhead-serviceregistry"
-create_core_system_keystore "eventhandler" "arrowhead-eventhandler"
-create_core_system_keystore "gateway" "arrowhead-gateway"
-create_core_system_keystore "gatekeeper" "arrowhead-gatekeeper"
+create_core_system_keystore "authorization" "${c}-authorization"
+create_core_system_keystore "orchestrator" "${c}-orchestrator"
+create_core_system_keystore "serviceregistry" "${c}-serviceregistry"
+create_core_system_keystore "eventhandler" "${c}-eventhandler"
+create_core_system_keystore "gateway" "${c}-gateway"
+create_core_system_keystore "gatekeeper" "${c}-gatekeeper"
 
 ###############################################################################################
 ### Add other core arrowhead systems here, in order to atuo generate certificates for them. ###
