@@ -17,10 +17,10 @@ file:${activemq.conf}/credentials.properties
 
  <sslContext>
     <sslContext keyStore="file:${activemq.base}/conf/relay.p12"
-                keyStorePassword="password"
-                keyStoreKeyPassword="password"
+                keyStorePassword="123456"
+                keyStoreKeyPassword="123456"
                 trustStore="file:${activemq.base}/conf/truststore.p12"
-                trustStorePassword="password" />
+                trustStorePassword="123456" />
  </sslContext>
 
 <policyMap>
