@@ -5,4 +5,4 @@ cd ./certificate-generation-scripts
 
 # For starters you should generate a certificate for your system here, i.e
 # `bash generate_system_certificate.sh -n <SYSTEM_NAME> -d <SYSTEM_CERT_DIR>`
-`bash generate_system_certificate.sh -n relay -d ../../activemq`
+`bash generate_system_certificate.sh -n exchangerateconsumer -d exchangerateconsumer`

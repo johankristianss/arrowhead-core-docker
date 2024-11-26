@@ -57,6 +57,7 @@ create_core_system_keystore "serviceregistry" "${c}-serviceregistry"
 create_core_system_keystore "eventhandler" "${c}-eventhandler"
 create_core_system_keystore "gateway" "${c}-gateway"
 create_core_system_keystore "gatekeeper" "${c}-gatekeeper"
+create_core_system_keystore "exchangerateprovider" "exchangerateprovider"
 
 ###############################################################################################
 ### Add other core arrowhead systems here, in order to atuo generate certificates for them. ###

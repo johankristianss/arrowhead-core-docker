@@ -17,19 +17,6 @@ services:
     ports:
       - 4306:3306
 
-      #  arrowhead-setup:
-      #    container_name: arrowhead-setup
-      #    build: 
-      #      context: .
-      #      dockerfile: ./setup/Dockerfile
-      #    env_file:
-      #      - .env
-      #    depends_on:
-      #      - c1-database
-      #      - c2-database
-      #    volumes:
-      #      - ./:/setup
-
   #
   # CLOUD 1
   #
@@ -139,7 +126,7 @@ services:
       - ./c2/serviceregistry/application.properties:/opt/arrowhead/application.properties
       - ./c2/serviceregistry/certificates:/opt/arrowhead/certificates
     ports:
-      - 9443:8443
+      - 9443:9443
 
   c2-authorization:
     container_name: c2-authorization
@@ -154,7 +141,7 @@ services:
       - ./c2/authorization/application.properties:/opt/arrowhead/application.properties
       - ./c2/authorization/certificates:/opt/arrowhead/certificates
     ports:
-      - 9445:8445
+      - 9445:9445
       
   c2-orchestrator:
     container_name: c2-orchestrator
@@ -169,7 +156,7 @@ services:
       - ./c2/orchestrator/application.properties:/opt/arrowhead/application.properties
       - ./c2/orchestrator/certificates:/opt/arrowhead/certificates
     ports:
-      - 9441:8441
+      - 9441:9441
 
   c2-eventhandler:
     container_name: c2-eventhandler
@@ -184,7 +171,7 @@ services:
       - ./c2/eventhandler/application.properties:/opt/arrowhead/application.properties
       - ./c2/eventhandler/certificates:/opt/arrowhead/certificates
     ports:
-      - 9455:8455
+      - 9455:9455
 
   c2-gatekeeper:
     container_name: c2-gatekeeper
@@ -199,7 +186,7 @@ services:
       - ./c2/gatekeeper/application.properties:/opt/arrowhead/application.properties
       - ./c2/gatekeeper/certificates:/opt/arrowhead/certificates
     ports:
-      - 9449:8449
+      - 9449:9449
 
   c2-gateway:
     container_name: c2-gateway
@@ -214,7 +201,7 @@ services:
       - ./c2/gateway/application.properties:/opt/arrowhead/application.properties
       - ./c2/gateway/certificates:/opt/arrowhead/certificates
     ports:
-      - 9453:8453
+      - 9453:9453
 
   # 
   # BROKER SERVER
@@ -225,9 +212,9 @@ services:
     environment:
       - "TZ=Europe/Amsterdam"
     volumes:
-      - ./activemq/activemq.xml:/conf/activemq.xml
-      - ./activemq/relay.p12:/conf/relay.p12
-      - ./activemq/truststore.p12:/conf/truststore.p12
+      - ./activemq/activemq.xml:/opt/apache-activemq/conf/activemq.xml
+      - ./activemq/certificates/relay1.p12:/opt/apache-activemq/conf/relay.p12
+      - ./activemq/certificates/truststore.p12:/opt/apache-activemq/conf/truststore.p12
     ports:
       - "61616:61616"
       - "8161:8161"
