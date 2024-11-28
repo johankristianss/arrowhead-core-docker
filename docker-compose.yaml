@@ -109,6 +109,7 @@ services:
       - ./c1/gateway/certificates:/opt/arrowhead/certificates
     ports:
       - 8453:8453
+      - 8001-8100:8001-8100
 
   # 
   # CLOUD 2
@@ -142,7 +143,7 @@ services:
       - ./c2/authorization/certificates:/opt/arrowhead/certificates
     ports:
       - 9445:9445
-      
+
   c2-orchestrator:
     container_name: c2-orchestrator
     image: aitiaiiot/arrowhead-system:4.6.1
@@ -202,6 +203,7 @@ services:
       - ./c2/gateway/certificates:/opt/arrowhead/certificates
     ports:
       - 9453:9453
+      - 9001-9100:9001-9100
 
   # 
   # BROKER SERVER

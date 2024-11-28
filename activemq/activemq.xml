@@ -44,14 +44,15 @@
             For more information, see:
             http://activemq.apache.org/producer-flow-control.html
         -->
-
+    <!--
  <sslContext>
     <sslContext keyStore="/opt/apache-activemq/conf/relay.p12"
                 keyStorePassword="123456"
                 keyStoreKeyPassword="123456"
                 trustStore="/opt/apache-activemq/conf/truststore.p12"
                 trustStorePassword="123456" />
- </sslContext>
+    </sslContext>
+    -->
     <destinationPolicy>
             <policyMap>
               <policyEntries>
@@ -139,7 +140,8 @@
         -->
         <transportConnectors>
             <!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB -->
-        <transportConnector name="ssl" uri="ssl://localhost:61616?trace=true&amp;needClientAuth=true&amp;wireFormat.maxFrameSize=1073741824"/>
+        <!-- <transportConnector name="ssl" uri="ssl://localhost:61616?trace=true&amp;needClientAuth=true&amp;wireFormat.maxFrameSize=1073741824"/> -->
+        <transportConnector name="openwire" uri="tcp://0.0.0.0:61616?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/> 
         </transportConnectors>
 
         <!-- destroy the spring context on shutdown to stop jetty -->
