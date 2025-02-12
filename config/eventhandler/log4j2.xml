@@ -4,9 +4,9 @@
         <Property name="LOG_PATTERN">
             %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
         </Property>
-		<Property name="SYSTEM_NAME">ORCHESTRATOR</Property>
-		<Property name="JDBC_LEVEL">DEBUG</Property>
-		<Property name="CONSOLE_FILE_LEVEL">DEBUG</Property>
+		<Property name="SYSTEM_NAME">EVENTHANDLER</Property>
+		<Property name="JDBC_LEVEL">INFO</Property>
+		<Property name="CONSOLE_FILE_LEVEL">INFO</Property>
 		<Property name="LOG_DIR">.</Property>
     </Properties>
     <Appenders>
@@ -14,7 +14,7 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
  			<ThresholdFilter level="${CONSOLE_FILE_LEVEL}" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
-		<RollingFile name="FileAppender" fileName="${LOG_DIR}/orchestrator.log" filePattern="${LOG_DIR}/orchestrator-%d{yyyy-MM-dd}-%i.log">
+		<RollingFile name="FileAppender" fileName="${LOG_DIR}/eventhandler.log" filePattern="${LOG_DIR}/eventhandler-%d{yyyy-MM-dd}-%i.log">
 	    	<PatternLayout>
 	        	<Pattern>${LOG_PATTERN}</Pattern>
 	    	</PatternLayout>
@@ -51,6 +51,6 @@
     	</AsyncLogger>
  		<AsyncLogger name="com" level="WARN" additivity="true">
             <AppenderRef ref="MySQLDatabase"  />			
-    	</AsyncLogger>
+    	</AsyncLogger>		
     </Loggers>
 </Configuration>

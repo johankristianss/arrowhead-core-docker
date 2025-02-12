@@ -32,6 +32,8 @@ services:
     volumes:
       - ./c1-props/serviceregistry/application.properties:/opt/arrowhead/application.properties
       - ./c1/serviceregistry/certificates:/opt/arrowhead/certificates
+      - ./config/serviceregistry/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/serviceregistry/run.sh:/opt/arrowhead/run.sh
     ports:
       - 8443:8443
   
@@ -47,6 +49,8 @@ services:
     volumes:
       - ./c1-props/authorization/application.properties:/opt/arrowhead/application.properties
       - ./c1/authorization/certificates:/opt/arrowhead/certificates
+      - ./config/authorization/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/authorization/run.sh:/opt/arrowhead/run.sh
     ports:
       - 8445:8445
       
@@ -62,8 +66,8 @@ services:
     volumes:
       - ./c1-props/orchestrator/application.properties:/opt/arrowhead/application.properties
       - ./c1/orchestrator/certificates:/opt/arrowhead/certificates
-      - ./debug/orchestrator/log4j2.xml:/opt/arrowhead/log4j2.xml
-      - ./debug/orchestrator/run.sh:/opt/arrowhead/run.sh
+      - ./config/orchestrator/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/orchestrator/run.sh:/opt/arrowhead/run.sh
     ports:
       - 8441:8441
 
@@ -79,6 +83,8 @@ services:
      volumes:
        - ./c1-props/eventhandler/application.properties:/opt/arrowhead/application.properties
        - ./c1/eventhandler/certificates:/opt/arrowhead/certificates
+       - ./config/eventhandler/log4j2.xml:/opt/arrowhead/log4j2.xml
+       - ./config/eventhandler/run.sh:/opt/arrowhead/run.sh
      ports:
        - 8455:8455
 
@@ -94,8 +100,8 @@ services:
     volumes:
       - ./c1-props/gatekeeper/application.properties:/opt/arrowhead/application.properties
       - ./c1/gatekeeper/certificates:/opt/arrowhead/certificates
-      - ./debug/gatekeeper/log4j2.xml:/opt/arrowhead/log4j2.xml
-      - ./debug/gatekeeper/run.sh:/opt/arrowhead/run.sh
+      - ./config/gatekeeper/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/gatekeeper/run.sh:/opt/arrowhead/run.sh
     ports:
       - 8449:8449
 
@@ -111,8 +117,8 @@ services:
     volumes:
       - ./c1-props/gateway/application.properties:/opt/arrowhead/application.properties
       - ./c1/gateway/certificates:/opt/arrowhead/certificates
-      - ./debug/gateway/log4j2.xml:/opt/arrowhead/log4j2.xml
-      - ./debug/gateway/run.sh:/opt/arrowhead/run.sh
+      - ./config/gateway/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/gateway/run.sh:/opt/arrowhead/run.sh
     ports:
       - 8453:8453
       - 8001-8100:8001-8100
@@ -132,6 +138,8 @@ services:
     volumes:
       - ./c2-props/serviceregistry/application.properties:/opt/arrowhead/application.properties
       - ./c2/serviceregistry/certificates:/opt/arrowhead/certificates
+      - ./config/serviceregistry/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/serviceregistry/run.sh:/opt/arrowhead/run.sh
     ports:
       - 9443:9443
 
@@ -147,6 +155,8 @@ services:
     volumes:
       - ./c2-props/authorization/application.properties:/opt/arrowhead/application.properties
       - ./c2/authorization/certificates:/opt/arrowhead/certificates
+      - ./config/authorization/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/authorization/run.sh:/opt/arrowhead/run.sh
     ports:
       - 9445:9445
 
@@ -162,8 +172,8 @@ services:
     volumes:
       - ./c2-props/orchestrator/application.properties:/opt/arrowhead/application.properties
       - ./c2/orchestrator/certificates:/opt/arrowhead/certificates
-      - ./debug/orchestrator/log4j2.xml:/opt/arrowhead/log4j2.xml
-      - ./debug/orchestrator/run.sh:/opt/arrowhead/run.sh
+      - ./config/orchestrator/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/orchestrator/run.sh:/opt/arrowhead/run.sh
     ports:
       - 9441:9441
 
@@ -179,6 +189,8 @@ services:
     volumes:
       - ./c2-props/eventhandler/application.properties:/opt/arrowhead/application.properties
       - ./c2/eventhandler/certificates:/opt/arrowhead/certificates
+      - ./config/eventhandler/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/eventhandler/run.sh:/opt/arrowhead/run.sh
     ports:
       - 9455:9455
 
@@ -194,8 +206,8 @@ services:
     volumes:
       - ./c2-props/gatekeeper/application.properties:/opt/arrowhead/application.properties
       - ./c2/gatekeeper/certificates:/opt/arrowhead/certificates
-      - ./debug/gatekeeper/log4j2.xml:/opt/arrowhead/log4j2.xml
-      - ./debug/gatekeeper/run.sh:/opt/arrowhead/run.sh
+      - ./config/gatekeeper/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/gatekeeper/run.sh:/opt/arrowhead/run.sh
     ports:
       - 9449:9449
 
@@ -211,8 +223,8 @@ services:
     volumes:
       - ./c2-props/gateway/application.properties:/opt/arrowhead/application.properties
       - ./c2/gateway/certificates:/opt/arrowhead/certificates
-      - ./debug/gateway/log4j2.xml:/opt/arrowhead/log4j2.xml
-      - ./debug/gateway/run.sh:/opt/arrowhead/run.sh
+      - ./config/gateway/log4j2.xml:/opt/arrowhead/log4j2.xml
+      - ./config/gateway/run.sh:/opt/arrowhead/run.sh
     ports:
       - 9453:9453
       - 9001-9100:9001-9100
